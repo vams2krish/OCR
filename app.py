@@ -13,7 +13,7 @@ except pytesseract.TesseractNotFoundError:
     st.error("Tesseract OCR engine is not found. Please ensure it's installed correctly.")
 
 #set the path location for the pytesseract executable file 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 #file uploader in the streamlit UI
 file_upload = st.file_uploader("Upload a image file")
