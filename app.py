@@ -3,29 +3,24 @@ import pytesseract
 from PIL import Image
 import platform
 
+# Set Tesseract path for Windows only
 if platform.system() == 'Windows':
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
+st.title("OCR Image Text Extractor")
 
+file_upload = st.file_uploader("Upload an image file", type=["png", "jpg", "jpeg"])
 
 if file_upload is not None:
-    #file uploader in the streamlit UI
-    file_upload = st.file_uploader("Upload a image file")
-
-    #return  streamlit file upload status   
     st.success("Image is uploaded successfully", icon='✅')
-    
-    #image file uploaded to PILLOW
+
     image = Image.open(file_upload)
-    
-    #Convert to grayscale image
-    file = image.convert('L')
-    
-    #open upload image
-    st.write(file)
-    
-    #extract text from the file upload
-    extracted_text = pytesseract.image_to_string(file)
-    
-    #Display output text
-    st.write("Extracted text:\n\n",extracted_text)
+    gray_image = image.convert('L')
+    st.image(gray_image, caption='Grayscale Image')
+
+    # Extract text
+    extracted_text = pytesseract.image_to_string(gray_image)
+    st.write("### Extracted Text")
+    st.text(extracted_text)
+else:
+    st.info("Please upload an image to begin.")
