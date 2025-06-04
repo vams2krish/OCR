@@ -9,7 +9,7 @@ if platform.system() == 'Windows':
 #file uploader in the streamlit UI
 file_upload = st.file_uploader("Upload a image file")
 
-if file_upload is not None
+if file_upload is not None:
     #return  streamlit file upload status
     st.success("Image is uploaded successfully", icon='✅')
 
